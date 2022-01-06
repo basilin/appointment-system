@@ -4,6 +4,7 @@
     "aba-client": "apps/aba-client",
     "aba-client-e2e": "apps/aba-client-e2e",
     "api": "apps/api",
-    "api-interfaces": "libs/api-interfaces"
+    "api-interfaces": "libs/api-interfaces",
+    "api-services": "libs/api-services"
   }
 }

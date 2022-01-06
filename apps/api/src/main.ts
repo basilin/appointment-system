@@ -1,13 +1,16 @@
 import * as express from 'express';
-import { Message } from '@aba-workspace/api-interfaces';
+import * as cors from 'cors';
+import * as bodyParser from 'body-parser';
+import { UserService } from '@aba-workspace/api-services';
+import { connect } from 'mongoose';
+import router from './app/app.route';
 
 const app = express();
-
-const greeting: Message = { message: 'Welcome to api!' };
-
-app.get('/api', (req, res) => {
-  res.send(greeting);
-});
+connect('mongodb://root:example@localhost:27017/');
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(router);
 
 const port = process.env.port || 3333;
 const server = app.listen(port, () => {
