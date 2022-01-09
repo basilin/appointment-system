@@ -12,5 +12,4 @@ const UserSchema: Schema = new Schema({
   lastName: { type: String, required: true }
 });
 
-// Export the model and return your IUser interface
 export default model<IUser>('User', UserSchema);

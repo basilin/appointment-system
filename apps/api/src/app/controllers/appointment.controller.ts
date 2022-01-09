@@ -2,14 +2,22 @@ import * as express from 'express';
 import { IAppointment, AppointmentService } from '@aba-workspace/api-services';
 
 const appointmentRouter = express.Router();
-appointmentRouter.get('/user',async (req,res)=>{
-  const users = await AppointmentService.query({});
-  res.send(users)
+appointmentRouter.get('/appointment', async (req, res) => {
+  const appointments = await AppointmentService.query(req.query);
+  res.send(appointments);
 });
 
-appointmentRouter.post('/user',async (req,res)=>{
-  const user = await AppointmentService.create(req.body as IAppointment);
-  res.send(user)
+appointmentRouter.post('/appointment', async (req, res) => {
+  const appointment = await AppointmentService.create(req.body as IAppointment);
+  res.send(appointment);
+});
+
+appointmentRouter.put('/appointment/:id', async (req, res) => {
+  const appointment = await AppointmentService.update(
+    req.params.id,
+    req.body as IAppointment
+  );
+  res.send(appointment);
 });
 
 export default appointmentRouter;

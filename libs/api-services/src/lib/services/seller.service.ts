@@ -1,7 +1,11 @@
 import Seller, { ISeller } from '../db/seller.model';
 
 export async function findOne(id: string) {
-  return await Seller.findById(id);
+  return await Seller.findById(id).exec();
+}
+
+export async function searchByName(namePart: string) {
+  return await Seller.find({name:{$regex:namePart,$options:'i'}}).exec();
 }
 
 export async function query(query: any) {

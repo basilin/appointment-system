@@ -3,7 +3,7 @@ import { IUser, UserService } from '@aba-workspace/api-services';
 
 const userRouter = express.Router();
 userRouter.get('/user',async (req,res)=>{
-  const users = await UserService.query({});
+  const users = await UserService.query(req.query);
   res.send(users)
 });
 
